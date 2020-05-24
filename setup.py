@@ -11,7 +11,7 @@ import pybind11
 
 binding = [
     Extension(
-        project,
+        'zfswrapper',
         ['sources/cpp/libzfs_wrapper.cpp'],
         extra_compile_args=['-std=c++11',
                             '-L/usr/lib'],
@@ -22,7 +22,7 @@ binding = [
             '/usr/include/libspl'
         ],
         language='c++',
-        libraries=['nvpair', 'zfs_core'],
+        libraries=['libzfs'],
     ),
 ]
 
