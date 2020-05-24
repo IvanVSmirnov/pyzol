@@ -9,7 +9,7 @@ from distutils.core import setup, Extension
 from doc.source.conf import project, release
 import pybind11
 
-binding = [
+wrapper = [
     Extension(
         'zfswrapper',
         ['sources/cpp/libzfs_wrapper.cpp'],
@@ -18,16 +18,15 @@ binding = [
         include_dirs=[
             pybind11.get_include(),
             '/usr/include/libzfs',
-            '/usr/include/lib',
-            '/usr/include/libspl'
+            '/usr/include/libspl',
         ],
         language='c++',
-        libraries=['libzfs'],
+        libraries=['zfs'],
     ),
 ]
 
 setup(
     name=project,
     version=release,
-    ext_modules=binding
+    ext_modules=wrapper
 )

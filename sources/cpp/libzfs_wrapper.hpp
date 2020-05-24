@@ -2,6 +2,7 @@
 #define	_LIBZFS_WRAPPER_H_
 
 #include <pybind11/pybind11.h>
+#include <libzfs/libzfs.h>
 
 #ifdef	__cplusplus
 extern "C" {

@@ -2,7 +2,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(_zfs, m) {
+PYBIND11_MODULE(zfswrapper, m) {
     m.doc() = "ZFS binding module";
     m.def("test", &test, "Test function");
 };
