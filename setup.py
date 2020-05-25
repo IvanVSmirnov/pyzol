@@ -11,17 +11,21 @@ import pybind11
 
 wrapper = [
     Extension(
-        'zfswrapper',
-        ['sources/cpp/libzfs_wrapper.cpp'],
+        'pyzol',
+        ['sources/cpp/wrapper.cpp',
+        'sources/cpp/zfs.cpp',
+        'sources/cpp/pool.cpp',
+        ],
         extra_compile_args=['-std=c++11',
                             '-L/usr/lib'],
         include_dirs=[
             pybind11.get_include(),
             '/usr/include/libzfs',
             '/usr/include/libspl',
+            '/usr/include/lib',
         ],
         language='c++',
-        libraries=['zfs'],
+        libraries=['zfs', 'zpool', 'nvpair'],
     ),
 ]
 
