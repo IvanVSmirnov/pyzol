@@ -9,6 +9,9 @@ extern "C" {
 #endif
 
 int test(char *message);
+void* zfs_init(void);
+void zfs_fini(void* ptr);
+
 
 #ifdef	__cplusplus
 }
