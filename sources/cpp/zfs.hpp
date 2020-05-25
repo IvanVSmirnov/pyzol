@@ -14,7 +14,7 @@ class ZFS {
     public:
         ZFS();
         ~ZFS();
-        void dataset_create(std::string name, uint64_t size);
+        std::vector<std::string> pools(void);
 
     private:
         libzfs_handle* handle = NULL;

@@ -1,18 +1,27 @@
 #include "zfs.hpp"
 
 #include <iostream>
+#include <vector>
+#include <string>
 
 ZFS::ZFS() {
     handle = libzfs_init();
 }
 
 ZFS::~ZFS() {
-    if (handle != NULL)
-    {
+    if (handle != NULL) {
         libzfs_fini(handle);
     }
 }
 
+std::vector<std::string> pools(void) {
+    std::vector<std::string> ret;
+    ret..push_back('zdata/one');
+    ret..push_back('zdata/two');
+    return ret;
+}
+
+/*
 void ZFS::dataset_create(std::string name, uint64_t size) {
     //zfs_type_t type = ZFS_TYPE_VOLUME;
 
@@ -25,3 +34,4 @@ void ZFS::dataset_create(std::string name, uint64_t size) {
 
     nvlist_free(props);
 }
+*/

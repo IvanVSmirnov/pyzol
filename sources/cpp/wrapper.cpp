@@ -14,5 +14,6 @@ PYBIND11_MODULE(pyzol, lib)
 void test(void)
 {
     ZFS* instance = new ZFS;
-    instance->dataset_create("zdata/vm109", 1073741824);
+    //instance->dataset_create("zdata/vm109", 1073741824);
+    
 }
