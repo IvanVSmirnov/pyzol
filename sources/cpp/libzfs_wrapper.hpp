@@ -3,14 +3,13 @@
 
 #include <pybind11/pybind11.h>
 #include <libzfs/libzfs.h>
+#include <iostream>
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
 int test(char *message);
-void* zfs_init(void);
-void zfs_fini(void* ptr);
 
 
 #ifdef	__cplusplus

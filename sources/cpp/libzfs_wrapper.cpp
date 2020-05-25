@@ -5,31 +5,28 @@ namespace py = pybind11;
 PYBIND11_MODULE(zfswrapper, lib) {
     lib.doc() = "ZFS binding module";
 
-    lib.def("zfs_init", &zfs_init, "Library initialization");
-    lib.def("zfs_fini", &zfs_init, "Deallocate resources");
+    lib.def("test", &test, "Test func")
 };
 
-libzfs_handle_t* zfs_hdl = NULL;
-
-void zfs_init(void) {
-    zfs_hdl =  libzfs_init();
+int test(void) {
+    zfs = new ZFS;
 }
 
-void zfs_fini(void* ptr) {
-    libzfs_fini(zfs_hdl);
-}
+class ZFS {
+    public:
+        ZFS() {
+            ZFS::handle = libzfs_init();
+            std::cout << "Library init" << std::endl;
 
+        }
 
-/*
+        ~ZFS() {
+            if (ZFS::handle != NULL) {
+                libzfs_fini(handle);
+                std::cout << "Resouce deallocated" << std::endl;
+            }
+        }
 
-typedef struct zfs_handle zfs_handle_t;
-typedef struct zpool_handle zpool_handle_t;
-typedef struct libzfs_handle libzfs_handle_t;
-
-extern libzfs_handle_t *libzfs_init(void);
-extern void libzfs_fini(libzfs_handle_t *);
-
-extern libzfs_handle_t *zpool_get_handle(zpool_handle_t *);
-extern libzfs_handle_t *zfs_get_handle(zfs_handle_t *);
-
-*/
+    private:
+        libzfs_handle_t* handle = NULL;
+};
