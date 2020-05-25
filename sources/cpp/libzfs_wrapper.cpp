@@ -5,8 +5,8 @@ namespace py = pybind11;
 PYBIND11_MODULE(zfswrapper, lib) {
     lib.doc() = "ZFS binding module";
 
-    lib.def("zfs_init", &zfs_init, "Library initialization")
-    lib.def("zfs_fini", &zfs_init, "Deallocate resources")
+    lib.def("zfs_init", &zfs_init, "Library initialization");
+    lib.def("zfs_fini", &zfs_init, "Deallocate resources");
 };
 
 libzfs_handle_t* zfs_hdl = NULL;
