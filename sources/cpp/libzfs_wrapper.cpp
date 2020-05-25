@@ -5,11 +5,11 @@ namespace py = pybind11;
 PYBIND11_MODULE(zfswrapper, lib) {
     lib.doc() = "ZFS binding module";
 
-    lib.def("test", &test, "Test func")
+    lib.def("test", &test, "Test func");
 };
 
 int test(void) {
-    zfs = new ZFS;
+    ZFS instance = new ZFS;
 }
 
 class ZFS {
