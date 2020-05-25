@@ -9,21 +9,19 @@ PYBIND11_MODULE(zfswrapper, lib) {
 };
 
 int test(void) {
-    ZFS instance = new ZFS;
+    ZFS* instance = new ZFS;
 }
 
 class ZFS {
     public:
-        ZFS() {
+        ZFS(void) {
             ZFS::handle = libzfs_init();
-            std::cout << "Library init" << std::endl;
-
         }
 
-        ~ZFS() {
+        ~ZFS(void) {
             if (ZFS::handle != NULL) {
-                libzfs_fini(handle);
-                std::cout << "Resouce deallocated" << std::endl;
+                libzfs_fini(*handle);
+                delete handle;
             }
         }
 
