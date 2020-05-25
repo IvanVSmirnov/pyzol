@@ -9,12 +9,14 @@ PYBIND11_MODULE(zfswrapper, lib) {
     lib.def("zfs_fini", &zfs_init, "Deallocate resources")
 };
 
-void* zfs_init(void) {
-    return libzfs_init();
+libzfs_handle_t* zfs_hdl = NULL;
+
+void zfs_init(void) {
+    zfs_hdl =  libzfs_init();
 }
 
 void zfs_fini(void* ptr) {
-    libzfs_fini(ptr);
+    libzfs_fini(zfs_hdl);
 }
 
 
