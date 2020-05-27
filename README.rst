@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.com/IvanVSmirnov/pyzol.svg?branch=latest
+    :target: https://travis-ci.com/IvanVSmirnov/pyzol
+
 pyzol - python binding for ZFS on Linux
 ================================================================================
 
