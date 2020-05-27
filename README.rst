@@ -1,4 +1,4 @@
-pyzol - python binding for openzfs
+pyzol - python binding for ZFS on Linux
 ================================================================================
 
 
