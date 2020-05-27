@@ -1,28 +1,75 @@
 #include "zfs.hpp"
+#include "pool.hpp"
 
 #include <iostream>
 #include <vector>
 #include <string>
 
+#include <libzfs/libzfs.h>
+
 ZFS::ZFS() {
+    std::cout << "ZFS()" << std::endl;
     handle = libzfs_init();
 }
 
 ZFS::~ZFS() {
+    std::cout << "~ZFS()" << std::endl;
     if (handle != NULL) {
         libzfs_fini(handle);
     }
 }
 
-std::vector<std::string> pools(void) {
-    std::vector<std::string> ret;
-    ret..push_back('zdata/one');
-    ret..push_back('zdata/two');
-    return ret;
+static std::vector<std::string> pool_list;
+
+static int pool_iterate(zpool_handle_t *pool_handle, void *data) {
+    //std::cout << "POOLN: " << zpool_get_name(pool_handle) << std::endl;
+    pool_list.push_back(zpool_get_name(pool_handle));
 }
+
+std::vector<std::string> ZFS::pools(void) {
+    pool_list.clear();
+    zpool_iter(handle, pool_iterate, NULL);
+
+    return pool_list;
+
+
+    /*
+    //
+    if (zpool_iter(zhdl, zfs_mark_pool, NULL) != 0)
+		return;
+
+    // /
+    dev_data_t data = { 0 };
+
+	data.dd_compare = physical;
+	data.dd_func = func;
+	data.dd_prop = ZPOOL_CONFIG_PHYS_PATH;
+	data.dd_found = B_FALSE;
+	data.dd_islabeled = is_slice;
+	data.dd_new_devid = devid;
+
+	(void) zpool_iter(g_zfshdl, zfs_iter_pool, &data);
+
+    //
+    static void *
+    zfs_enum_pools(void *arg)
+    {
+	(void) zpool_iter(g_zfshdl, zfs_unavail_pool, (void *)&g_pool_list);
+	g_enumeration_done = B_TRUE;
+	return (NULL);
+    }
+    */
+}
+
+Pool ZFS::get_pool(std::string name) {
+    Pool p;
+    return p;
+}
+
 
 /*
 void ZFS::dataset_create(std::string name, uint64_t size) {
+
     //zfs_type_t type = ZFS_TYPE_VOLUME;
 
     // Initialize dataset properties
@@ -34,4 +81,5 @@ void ZFS::dataset_create(std::string name, uint64_t size) {
 
     nvlist_free(props);
 }
+
 */
