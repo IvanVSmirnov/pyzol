@@ -20,4 +20,5 @@
 import pytest
 
 def test_library_import():
+    """Test for shared library (.so) can be loaded to python interpreter"""
     import pyzol
