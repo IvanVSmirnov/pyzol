@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'zfs-wrapper'
+project = 'pyzol'
 copyright = '2020, Ivan Smirnov'
 author = 'Ivan Smirnov'
 
