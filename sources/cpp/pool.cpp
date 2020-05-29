@@ -31,7 +31,7 @@ Pool::~Pool() {
 }
 
 std::string Pool::property(std::string name) {
-        std::cout << "~Pool()" << std::endl;
+    std::cout << "Pool.property()" << std::endl;
     return name;
 }
 

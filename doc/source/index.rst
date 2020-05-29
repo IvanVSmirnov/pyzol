@@ -11,12 +11,3 @@ Welcome to pyzol documentation!
    :caption: Contents:
 
    pages/installation
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

@@ -37,13 +37,9 @@ class ZFS {
         ZFS();
         ~ZFS();
         std::vector<std::string> pools(void);
-        Pool get_pool(std::string name);
 
     private:
-        libzfs_handle* handle = NULL;
-
-
-        //std::vector<std::string> pool_list;
+        libzfs_handle_t* zfs_handle = NULL;
 };
 
 #ifdef	__cplusplus

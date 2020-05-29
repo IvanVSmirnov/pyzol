@@ -30,11 +30,12 @@
 namespace py = pybind11;
 
 PYBIND11_MODULE(pyzol, lib) {
-    lib.doc() = "ZFS binding module";
+    lib.doc() = "libzfs python binding package";
+
 
     py::class_<ZFS>(lib, "ZFS")
         .def(py::init<>())
-        .def("pools", &ZFS::pools)
+        .def("pools", &ZFS::pools, py::return_value_policy::copy)
         .def("get_pool", &ZFS::get_pool);
 
     

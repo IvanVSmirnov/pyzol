@@ -25,51 +25,33 @@
 
 #include <libzfs/libzfs.h>
 
-ZFS::ZFS() {
-    std::cout << "ZFS()" << std::endl;
-    handle = libzfs_init();
-}
-
-ZFS::~ZFS() {
-    std::cout << "~ZFS()" << std::endl;
-    if (handle != NULL) {
-        libzfs_fini(handle);
-    }
-}
 
 static std::vector<std::string> pool_list;
 
 static int pool_iterate(zpool_handle_t *pool_handle, void *data) {
-    //std::cout << "POOLN: " << zpool_get_name(pool_handle) << std::endl;
-    pool_list.push_back(zpool_get_name(pool_handle));
+    zpool_list.push_back(zpool_get_name(pool_handle));    
+    zpool_close(pool_handle);
+    return (0);
+}
+
+ZFS::ZFS() {
+    zfs_handle = libzfs_init();
+}
+
+ZFS::~ZFS() {
+    if (zfs_handle != NULL) {
+        libzfs_fini(zfs_handle);
+    }
 }
 
 std::vector<std::string> ZFS::pools(void) {
     pool_list.clear();
-    zpool_iter(handle, pool_iterate, NULL);
-
+    int retval = zpool_iter(zfs_handle, pool_iterate, NULL);
     return pool_list;
 }
 
 Pool ZFS::get_pool(std::string name) {
-    Pool p;
-    return p;
+    zpool_handle_t* hdl = zpool_open(zfs_handle, name.c_str());
+    // TODO
+    zpool_close(hdl);
 }
-
-
-/*
-void ZFS::dataset_create(std::string name, uint64_t size) {
-
-    //zfs_type_t type = ZFS_TYPE_VOLUME;
-
-    // Initialize dataset properties
-    nvlist_t *props;
-    nvlist_alloc(&props, NV_UNIQUE_NAME, 0);
-
-    nvlist_add_uint64(props, zfs_prop_to_name(ZFS_PROP_VOLSIZE), size);
-    zfs_create(handle, name.c_str(), ZFS_TYPE_VOLUME, props);
-
-    nvlist_free(props);
-}
-
-*/
