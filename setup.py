@@ -19,6 +19,7 @@
 
 from distutils.core import setup, Extension
 import pybind11
+from doc.source.conf import project, release
 
 pyzol = [
     Extension(
@@ -44,5 +45,7 @@ pyzol = [
 ]
 
 setup(
-    ext_modules=pyzol
+    name=project,
+    version=release,
+    ext_modules=pyzol,
 )
