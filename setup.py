@@ -17,10 +17,15 @@
 #   along with this program; if not see see <http://www.gnu.org/licenses/>
 
 
-from setuptools import setup
-from distutils.core import Extension
-import pybind11
+from setuptools import setup, Extension
 from doc.source.conf import project, release
+
+
+class PybindInclude():
+    """Needs to pospone importing pybind11 library."""
+    def __str__(self):
+        import pybind11
+        return pybind11.get_include()
 
 module = [
     Extension(
@@ -33,7 +38,7 @@ module = [
         language='c++',
         extra_compile_args=['-std=c++11'],
         include_dirs=[
-            pybind11.get_include(),
+            PybindInclude(),
             '/usr/include/libzfs',
             '/usr/include/libspl',
             '/usr/include/lib',
@@ -48,5 +53,5 @@ module = [
 setup(
     name=project,
     version=release,
-    ext_modules=module,
+    ext_modules=module
 )
