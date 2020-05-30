@@ -26,14 +26,6 @@
 #include <libzfs/libzfs.h>
 
 
-static std::vector<std::string> pool_list;
-
-static int pool_iterate(zpool_handle_t *pool_handle, void *data) {
-    zpool_list.push_back(zpool_get_name(pool_handle));    
-    zpool_close(pool_handle);
-    return (0);
-}
-
 ZFS::ZFS() {
     zfs_handle = libzfs_init();
 }
@@ -42,6 +34,14 @@ ZFS::~ZFS() {
     if (zfs_handle != NULL) {
         libzfs_fini(zfs_handle);
     }
+}
+
+static std::vector<std::string> pool_list;
+
+static int pool_iterate(zpool_handle_t *pool_handle, void *data) {
+    pool_list.push_back(zpool_get_name(pool_handle));    
+    zpool_close(pool_handle);
+    return (0);
 }
 
 std::vector<std::string> ZFS::pools(void) {
