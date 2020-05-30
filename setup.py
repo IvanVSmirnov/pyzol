@@ -17,11 +17,12 @@
 #   along with this program; if not see see <http://www.gnu.org/licenses/>
 
 
-from distutils.core import setup, Extension
+from setuptools import setup
+from distutils.core import Extension
 import pybind11
 from doc.source.conf import project, release
 
-pyzol = [
+module = [
     Extension(
         'pyzol',
         [
@@ -47,5 +48,5 @@ pyzol = [
 setup(
     name=project,
     version=release,
-    ext_modules=pyzol,
+    ext_modules=module,
 )

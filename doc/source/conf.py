@@ -22,7 +22,7 @@ copyright = '2020, Ivan Smirnov'
 author = 'Ivan Smirnov'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.3'
+release = '0.0.8'
 
 
 # -- General configuration ---------------------------------------------------
