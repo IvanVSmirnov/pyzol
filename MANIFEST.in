@@ -1,0 +1,8 @@
+AUTHORS.rst
+CHANGELOG.rst
+LICENSE.txt
+README.rst
+setup.cfg
+setup.py
+recursive-include sources *
+recursive-include test *
