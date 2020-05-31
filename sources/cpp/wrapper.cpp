@@ -35,12 +35,10 @@ PYBIND11_MODULE(pyzol, lib) {
 
     py::class_<ZFS>(lib, "ZFS")
         .def(py::init<>())
-        .def("pools", &ZFS::pools, py::return_value_policy::copy)
-        .def("get_pool", &ZFS::get_pool);
-
+        .def("pools", &ZFS::pools, py::return_value_policy::take_ownership);
     
     py::class_<Pool>(lib, "Pool")
         .def(py::init<>())
-        .def("property", &Pool::property);
-    
+        .def("property", &Pool::property)
+        .def_readwrite("name", &Pool::name); 
 };

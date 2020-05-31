@@ -27,31 +27,28 @@
 
 
 ZFS::ZFS() {
-    zfs_handle = libzfs_init();
+    libzfs_handle = libzfs_init();
 }
 
 ZFS::~ZFS() {
-    if (zfs_handle != NULL) {
-        libzfs_fini(zfs_handle);
+    if (libzfs_handle != NULL) {
+        libzfs_fini(libzfs_handle);
     }
 }
 
-static std::vector<std::string> pool_list;
+static std::vector<Pool*> pool_list;
 
 static int pool_iterate(zpool_handle_t *pool_handle, void *data) {
-    pool_list.push_back(zpool_get_name(pool_handle));    
+    Pool* p = new Pool();
+    p->name = zpool_get_name(pool_handle);
+    pool_list.push_back(p);    
     zpool_close(pool_handle);
     return (0);
 }
 
-std::vector<std::string> ZFS::pools(void) {
-    pool_list.clear();
-    int retval = zpool_iter(zfs_handle, pool_iterate, NULL);
-    return pool_list;
-}
 
-Pool ZFS::get_pool(std::string name) {
-    zpool_handle_t* hdl = zpool_open(zfs_handle, name.c_str());
-    // TODO
-    zpool_close(hdl);
+std::vector<Pool*> ZFS::pools(void) {
+    pool_list.clear();
+    int retval = zpool_iter(libzfs_handle, pool_iterate, NULL);
+    return pool_list;
 }

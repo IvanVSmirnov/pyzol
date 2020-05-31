@@ -33,6 +33,8 @@ class Pool {
         Pool();
         ~Pool();
         std::string property(std::string name);
+        std::string get_name(void);
+        std::string name;
 };
 
 #ifdef	__cplusplus
