@@ -37,6 +37,7 @@ class ZFS {
         ZFS();
         ~ZFS();
         std::vector<Pool*> pools(void);
+        std::string version(void);
 
     private:
         libzfs_handle_t* libzfs_handle = NULL;

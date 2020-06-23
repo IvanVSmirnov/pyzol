@@ -21,11 +21,16 @@
 #include <iostream>
 
 
-Pool::Pool() {
+Pool::Pool(uint64_t guid) {
+    Pool::guid = guid;
 }
 
 Pool::~Pool() {
+    std::cout << "Detruct GUID=" << Pool::guid << std::endl;
 }
 
-std::string Pool::property(std::string name) {
+std::vector<std::string> Pool::properties(void) {
 }
+
+
+//ZPOOL_PROP_GUID

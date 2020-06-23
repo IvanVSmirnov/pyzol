@@ -39,9 +39,10 @@ ZFS::~ZFS() {
 static std::vector<Pool*> pool_list;
 
 static int pool_iterate(zpool_handle_t *pool_handle, void *data) {
-    Pool* p = new Pool();
-    p->name = zpool_get_name(pool_handle);
-    pool_list.push_back(p);    
+    // Get pool GUID
+    uint64_t guid = zpool_get_prop_int(pool_handle, ZPOOL_PROP_GUID, NULL);
+    Pool* zpool = new Pool(guid);
+    pool_list.push_back(zpool);    
     zpool_close(pool_handle);
     return (0);
 }
@@ -51,4 +52,11 @@ std::vector<Pool*> ZFS::pools(void) {
     pool_list.clear();
     int retval = zpool_iter(libzfs_handle, pool_iterate, NULL);
     return pool_list;
+}
+
+
+std::string ZFS::version(void) {
+	char userland[128];
+	zfs_version_userland(userland, sizeof(userland));
+    return std::string(userland);
 }

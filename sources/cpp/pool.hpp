@@ -19,6 +19,7 @@
 #ifndef _POOL_HPP_
 #define	_POOL_HPP_
 
+#include <vector>
 #include <string>
 
 #include <libzfs/libzfs.h>
@@ -30,11 +31,12 @@ extern "C" {
 
 class Pool {
     public:
-        Pool();
+        Pool(uint64_t guid);
         ~Pool();
-        std::string property(std::string name);
-        std::string get_name(void);
-        std::string name;
+        std::vector<std::string> properties(void);
+
+    private:
+        uint64_t guid;
 };
 
 #ifdef	__cplusplus
