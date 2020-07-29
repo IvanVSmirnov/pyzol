@@ -6,6 +6,12 @@
     
 .. image:: https://badges.gitter.im/pyzol/community.svg
     :target: https://gitter.im/pyzol/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+    
+    
+    
+.. image:: https://ibb.co/h7wZ7Ty
+  :width: 400
+  :alt: Work in progress
 
 
 pyzol - python binding for ZFS on Linux
