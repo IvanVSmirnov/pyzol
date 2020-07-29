@@ -8,10 +8,10 @@
     :target: https://gitter.im/pyzol/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
     
     
-    
-.. image:: https://ibb.co/h7wZ7Ty
-  :width: 400
-  :alt: Work in progress
+.. class:: center 
+    .. image:: https://i.ibb.co/qyVWy2d/wip.png
+      :width: 400
+      :alt: Work in progress
 
 
 pyzol - python binding for ZFS on Linux
